@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">iTell U</string>
+    <string name="itell_u">iTell-U</string>
+    <string name="hintuser">Username</string>
+    <string name="hintpw">Password</string>
+    <string name="txsign">Sign in</string>
+    <string name="email">Email</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="already_a_member">Already a member?</string>
+</resources>

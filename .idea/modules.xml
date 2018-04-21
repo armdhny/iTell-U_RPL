@@ -3,7 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/iTellU.iml" filepath="$PROJECT_DIR$/iTellU.iml" />
+      <module fileurl="file://$PROJECT_DIR$/iTell-U_RPL.iml" filepath="$PROJECT_DIR$/iTell-U_RPL.iml" />
+      <module fileurl="file://D:\IMPORTANT\Apps\TUBES MOBILE\iTell-U_RPL\iTellU.iml" filepath="D:\IMPORTANT\Apps\TUBES MOBILE\iTell-U_RPL\iTellU.iml" />
     </modules>
   </component>
 </project>

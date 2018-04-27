@@ -25,6 +25,7 @@
             android:name=".NavigationActivity"
             android:label="@string/title_activity_navigation"
             android:theme="@style/AppTheme" />
+        <activity android:name=".admin.ukm.ukmDetailActivity"></activity>
     </application>
 
 </manifest>

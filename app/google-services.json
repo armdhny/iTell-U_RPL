@@ -1,35 +1,27 @@
 {
   "project_info": {
-    "project_number": "165597144395",
-    "firebase_url": "https://itellu-c7109.firebaseio.com",
-    "project_id": "itellu-c7109",
-    "storage_bucket": "itellu-c7109.appspot.com"
+    "project_number": "85944727320",
+    "firebase_url": "https://itelu-73a84.firebaseio.com",
+    "project_id": "itelu-73a84",
+    "storage_bucket": "itelu-73a84.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:165597144395:android:d637756164b061df",
+        "mobilesdk_app_id": "1:85944727320:android:d637756164b061df",
         "android_client_info": {
           "package_name": "com.example.ari.itellu"
         }
       },
       "oauth_client": [
         {
-          "client_id": "165597144395-scskn9gh3ui0lpi46gogel7pv413p1eo.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.ari.itellu",
-            "certificate_hash": "c0cdddc967fcd00c3ff145938ab3976fccf3bdab"
-          }
-        },
-        {
-          "client_id": "165597144395-mgg65nngd7ckvtr7h3r6df9r5tn4uf0r.apps.googleusercontent.com",
+          "client_id": "85944727320-uive5pp0jr51j2tv1t5105e5v1c1drmr.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCe5Se3ZE-pp-sVdJJR3O6omiw3lbQGcTk"
+          "current_key": "AIzaSyAHUAXxSfrLeEyObm2ZTe7_vIt2qAc2OPE"
         }
       ],
       "services": {
@@ -37,13 +29,8 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "165597144395-mgg65nngd7ckvtr7h3r6df9r5tn4uf0r.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "status": 1,
+          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2

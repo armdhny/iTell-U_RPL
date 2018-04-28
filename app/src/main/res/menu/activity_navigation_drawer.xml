@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_account_box_black_24dp"
+            android:title="My Profile" />
+
+    </group>
+
+    <item android:title="Fitur">
+        <menu>
+            <item
+                android:id="@+id/nav_telyu"
+                android:icon="@drawable/contelu"
+                android:title="TEL-U" />
+            <item
+                android:id="@+id/nav_ukm"
+                android:icon="@drawable/ic_all_inclusive_black_24dp"
+                android:title="UKM" />
+            <item
+                android:id="@+id/nav_komuniti"
+                android:icon="@drawable/ic_people_black_24dp"
+                android:title="Komunitas" />
+            <item
+                android:id="@+id/nav_event"
+                android:icon="@drawable/ic_whatshot_black_24dp"
+                android:title="Event" />
+            <item
+                android:id="@+id/nav_maps"
+                android:icon="@drawable/ic_navigation_black_24dp"
+                android:title="MAPS" />
+        </menu>
+    </item>
+
+    <item android:title="General">
+        <menu>
+            <item
+                android:id="@+id/nav_help"
+                android:icon="@drawable/ic_help_black_24dp"
+                android:title="Help" />
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/ic_sentiment_dissatisfied_black_24dp"
+                android:title="Logout" />
+        </menu>
+    </item>
+
+    <item android:title="Admin">
+        <menu>
+            <item
+                android:id="@+id/nav_admin"
+                android:icon="@drawable/ic_build_black_24dp"
+                android:title="Edit Content" />
+        </menu>
+    </item>
+
+</menu>
+

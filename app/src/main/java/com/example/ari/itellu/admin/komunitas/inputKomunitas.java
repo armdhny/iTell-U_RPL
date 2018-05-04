@@ -1,5 +1,4 @@
-package com.example.ari.itellu.admin.ukm;
-
+package com.example.ari.itellu.admin.komunitas;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -33,22 +32,22 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 
 /**
- * A simple {@link Fragment} subclass.
+ * Created by Tavs on 04/05/2018.
  */
-public class inputUkm extends Fragment {
 
-    private TextInputEditText mNamaUkm,mDeskripsi;
+public class inputKomunitas extends Fragment {
+
+    private TextInputEditText mNamaKomunitas, mDeskripsi;
     private StorageReference refPhoto;
     private boolean isPicChange = false;
     private ImageView imgPhoto;
     private Button photoButton;
     private ProgressDialog pbDialog;
     private FloatingActionButton postButton;
-    private Uri photoUrl;
+    private Uri photoUrlKomuniti;
 
 
-
-    public inputUkm() {
+    public inputKomunitas() {
         // Required empty public constructor
     }
 
@@ -57,10 +56,10 @@ public class inputUkm extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_input_ukm, container, false);
+        View view = inflater.inflate(R.layout.fragment_input_komunitas, container, false);
         pbDialog = new ProgressDialog(getContext());
         imgPhoto = view.findViewById(R.id.imgPhotoKomuniti);
-        mNamaUkm = view.findViewById(R.id.editTextNamaUkm);
+        mNamaKomunitas = view.findViewById(R.id.editTextNamaKomunitas);
         mDeskripsi = view.findViewById(R.id.editTextDeskripsiKomuniti);
         photoButton = view.findViewById(R.id.btnChooseKomuniti);
         photoButton.setOnClickListener(new View.OnClickListener() {
@@ -73,13 +72,15 @@ public class inputUkm extends Fragment {
         postButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(mNamaUkm.getText().toString().isEmpty()){
-                    mNamaUkm.setError("Requied");
+                if (mNamaKomunitas.getText().toString().isEmpty()) {
+                    mNamaKomunitas.setError("Requied");
                     return;
-                }if(mDeskripsi.getText().toString().isEmpty()){
+                }
+                if (mDeskripsi.getText().toString().isEmpty()) {
                     mDeskripsi.setError("Requied");
                     return;
-                }if(!isPicChange) {
+                }
+                if (!isPicChange) {
                     Toast.makeText(getContext(), "Choose The Photo!", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -95,8 +96,8 @@ public class inputUkm extends Fragment {
     }
 
     private void uploadData() {
-        refPhoto = FirebaseC.storageRef.child("gambarUkm/" + System.currentTimeMillis() +".jpg");
-        final StorageReference photoImagesRef = FirebaseC.storageRef.child("gambarUkm/" + System.currentTimeMillis() +".jpg");
+        refPhoto = FirebaseC.storageRef.child("gambarKomuniti/" + System.currentTimeMillis() + ".jpg");
+        final StorageReference photoImagesRef = FirebaseC.storageRef.child("gambarKomuniti/" + System.currentTimeMillis() + ".jpg");
         refPhoto.getName().equals(photoImagesRef.getName());
         refPhoto.getPath().equals(photoImagesRef.getPath());
         imgPhoto.setDrawingCacheEnabled(true);
@@ -114,12 +115,12 @@ public class inputUkm extends Fragment {
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                photoUrl = taskSnapshot.getDownloadUrl();
-                String key = FirebaseC.refPhoto.push().getKey();
-                FirebaseC.refPhoto.child(key).setValue(new mUkm(
+                photoUrlKomuniti = taskSnapshot.getDownloadUrl();
+                String key = FirebaseC.refPhotoKomuniti.push().getKey();
+                FirebaseC.refPhotoKomuniti.child(key).setValue(new mKomunitas(
                         key,
-                        photoUrl.toString(),
-                        mNamaUkm.getText().toString(),
+                        photoUrlKomuniti.toString(),
+                        mNamaKomunitas.getText().toString(),
                         mDeskripsi.getText().toString()
                 ));
                 pbDialog.dismiss();
@@ -133,9 +134,8 @@ public class inputUkm extends Fragment {
     }
 
 
-
     private void pilihGambar() {
-        ImagePicker.create(inputUkm.this)
+        ImagePicker.create(inputKomunitas.this)
                 .returnMode(ReturnMode.ALL)
                 .folderMode(true)
                 .toolbarFolderTitle("Folder")
@@ -150,8 +150,8 @@ public class inputUkm extends Fragment {
     }
 
     private void refreshq() {
-        getFragmentManager().beginTransaction().detach(inputUkm.this).attach(inputUkm.this).commit();
-        mNamaUkm.setText(null);
+        getFragmentManager().beginTransaction().detach(inputKomunitas.this).attach(inputKomunitas.this).commit();
+        mNamaKomunitas.setText(null);
         mDeskripsi.setText(null);
     }
 
@@ -160,7 +160,7 @@ public class inputUkm extends Fragment {
         if (ImagePicker.shouldHandle(requestCode, resultCode, data)) { // jika ada data dipilih
             Image image = ImagePicker.getFirstImageOrNull(data); //ambil first image
             File imgFile = new File(image.getPath()); // dapatkan lokasi gambar yang dipilih
-            if(imgFile.exists()){ //jika ditemukan
+            if (imgFile.exists()) { //jika ditemukan
                 Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath()); //convert file ke bitmap
                 imgPhoto.setImageBitmap(myBitmap); //set imageview dengan gambar yang dipilih
                 isPicChange = true; // ubah state menjadi true untuk menandakan gambar telah dipilih

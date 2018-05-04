@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.ari.itellu.R;
+import com.example.ari.itellu.admin.komunitas.menuKomunitas;
 import com.example.ari.itellu.admin.ukm.menuUkm;
 
 
@@ -63,6 +64,13 @@ private Button mCrudTelyu, mCrudUkm, mCrudKomuniti, mCrudEvent;
             @Override
             public void onClick(View view) {
                 Log.d("Button Crud TelYu", "Menuju Menu crud Komuniti");
+                Fragment komuniti = new menuKomunitas();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.replace(R.id.container1, komuniti);
+                transaction.addToBackStack(null);
+
+                transaction.commit();
             }
         });
 

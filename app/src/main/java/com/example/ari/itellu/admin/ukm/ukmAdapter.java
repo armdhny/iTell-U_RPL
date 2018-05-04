@@ -32,7 +32,7 @@ public class ukmAdapter extends RecyclerView.Adapter<ukmAdapter.MyViewHolder>{
         public MyViewHolder(View view) {
             super(view);
             tvNameUkm = (TextView) view.findViewById(R.id.titleTV);
-            imgPhoto = (ImageView) view.findViewById(R.id.photoIMG);
+            imgPhoto = (ImageView) view.findViewById(R.id.photoIMGKomuniti);
             cvPhoto = (CardView) view.findViewById(R.id.cvPhoto);
         }
     }

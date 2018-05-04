@@ -4,11 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_margin_vertical"
-    android:paddingRight="@dimen/activity_margin_horizontal"
-    android:paddingLeft="@dimen/activity_margin_horizontal"
-    android:paddingTop="@dimen/activity_margin_vertical"
-    tools:context="com.example.ari.itellu.admin.ukm.ukmDetailActivity">
+    tools:context="com.example.ari.itellu.admin.komunitas.KomunitiDetailActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -19,9 +15,9 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/imgDetailFoto"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
+                android:id="@+id/imgDetailKomuniti"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
@@ -33,7 +29,7 @@
                 tools:ignore="MissingConstraints" />
 
             <TextView
-                android:id="@+id/namaUkmDetail"
+                android:id="@+id/namaDetailKom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -41,21 +37,21 @@
                 android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imgDetailFoto" />
+                app:layout_constraintTop_toBottomOf="@+id/imgDetailKomuniti" />
 
             <TextView
-                android:id="@+id/deskripsi"
+                android:id="@+id/deskripsi2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="20dp"
                 android:text="Deskripsi"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/namaUkmDetail"
+                app:layout_constraintTop_toBottomOf="@+id/namaDetailKom"
                 android:layout_marginLeft="16dp" />
 
             <TextView
-                android:id="@+id/isiDeskripsiDetail"
+                android:id="@+id/isiDeskripsiDetailKom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -63,7 +59,7 @@
                 android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/deskripsi" />
+                app:layout_constraintTop_toBottomOf="@+id/deskripsi2" />
 
         </android.support.constraint.ConstraintLayout>
     </ScrollView>

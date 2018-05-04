@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.ari.itellu.admin.ukm.inputUkm">
+    tools:context="com.example.ari.itellu.admin.komunitas.inputKomunitas">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -30,7 +30,7 @@
                 android:text="Pilih Gambar" />
 
             <android.support.design.widget.TextInputEditText
-                android:id="@+id/editTextNamaUkm"
+                android:id="@+id/editTextNamaKomunitas"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

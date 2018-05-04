@@ -19,4 +19,5 @@ public class FirebaseC {
     public static StorageReference storageRef = storage.getReference();
     public final static FirebaseDatabase database = FirebaseDatabase.getInstance();
     public final static DatabaseReference refPhoto = database.getReference("ukm");
+    public final static DatabaseReference refPhotoKomuniti = database.getReference("komuniti");
 }

@@ -26,7 +26,8 @@
             android:label="@string/title_activity_navigation"
             android:theme="@style/AppTheme" />
         <activity android:name=".admin.ukm.ukmDetailActivity" />
-        <activity android:name=".admin.komunitas.KomunitiDetailActivity"></activity>
+        <activity android:name=".admin.komunitas.KomunitiDetailActivity" />
+        <activity android:name=".admin.Event.EventDetailActivity"></activity>
     </application>
 
 </manifest>

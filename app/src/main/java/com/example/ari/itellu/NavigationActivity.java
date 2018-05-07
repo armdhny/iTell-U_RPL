@@ -1,5 +1,6 @@
 package com.example.ari.itellu;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -87,6 +88,11 @@ public class NavigationActivity extends AppCompatActivity
         } else if (id == R.id.nav_help){
 
         } else if (id == R.id.nav_logout){
+            FirebaseC.mAuth.signOut();
+            FirebaseC.currentUser = null;
+            startActivity(new Intent(NavigationActivity.this, SignIn.class));
+            finish();
+
 
         } else if (id == R.id.nav_admin){
             Log.d("Menu Admin:", "Content CRUD");

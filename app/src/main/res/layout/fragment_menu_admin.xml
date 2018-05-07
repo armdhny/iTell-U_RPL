@@ -53,6 +53,13 @@
                 android:layout_height="wrap_content"
                 android:text="CRUD EVENT" />
 
+            <Button
+                android:id="@+id/menu_pertanyaan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="List Pertanyaan" />
+
+
         </LinearLayout>
     </ScrollView>
 </FrameLayout>

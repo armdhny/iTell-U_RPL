@@ -3,22 +3,24 @@ package com.example.ari.itellu;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.ari.itellu.model.user;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class SignIn extends AppCompatActivity {
-    private EditText Nama;
+    private EditText Email;
     private EditText Pass;
     private TextView SignUp;
     private Button Login;
@@ -32,7 +34,7 @@ public class SignIn extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
-        Nama = (EditText) findViewById(R.id.etusername);
+        Email = (EditText) findViewById(R.id.etEmailSignIn);
         Pass = (EditText) findViewById(R.id.etpass);
         Login = (Button) findViewById(R.id.btnSignIn);
         SignUp = (TextView) findViewById(R.id.tvregist);
@@ -44,39 +46,21 @@ public class SignIn extends AppCompatActivity {
 
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
+                if (Email.getText().toString().isEmpty()) {
+                    Email.setError("Required");
+                    return;
+                }
 
-                mDialog.setMessage("Tunggu Sebentar");
+                if (Pass.getText().toString().isEmpty()) {
+                    Pass.setError("Required");
+                    return;
+                }
+
+                mDialog.setMessage("Please Wait");
+                mDialog.setIndeterminate(true);
                 mDialog.show();
-
-                table_user.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        //mengecek apakah user ada dalam database
-                        if (dataSnapshot.child(Nama.getText().toString()).exists()) {
-                            //Mengambil informasi user
-                            mDialog.dismiss();
-                            user User = dataSnapshot.child(Nama.getText().toString()).getValue(user.class);
-                            if (User != null) {
-                                if (User.getPassword().equals(Pass.getText().toString())) {
-                                    Toast.makeText(SignIn.this, "Berhasil Login", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(SignIn.this, NavigationActivity.class));
-                                } else {
-                                    Toast.makeText(SignIn.this, "Password salah", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        }else {
-                            mDialog.dismiss();
-                            Toast.makeText(SignIn.this, "Pengguna ini tidak terdaftar", Toast.LENGTH_SHORT).show();
-                        }
-
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
+                loginProcess();
             }
         });
 
@@ -89,7 +73,30 @@ public class SignIn extends AppCompatActivity {
             }
         });
     }
-    private void validasi (String username, String password){
 
+    private void loginProcess() {
+        final String str_email = Email.getText().toString();
+        final String str_password = Pass.getText().toString();
+
+        FirebaseC.mAuth.signInWithEmailAndPassword(str_email, str_password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            mDialog.dismiss();
+                            Log.d("", "signInWithEmail: Success");
+                            FirebaseUser curUser = FirebaseC.mAuth.getCurrentUser();
+                            FirebaseC.currentUser = curUser;
+                            startActivity(new Intent(SignIn.this, NavigationActivity.class));
+                            Toast.makeText(SignIn.this, "Login Success", Toast.LENGTH_SHORT).show();
+                            finish();
+                        } else {
+                            Log.w("", "signInWithEmail: failure", task.getException());
+                            Toast.makeText(SignIn.this, "Account Doesn't Exist",
+                                    Toast.LENGTH_SHORT).show();
+                            mDialog.dismiss();
+                        }
+                    }
+                });
     }
 }

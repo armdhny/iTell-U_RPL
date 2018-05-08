@@ -21,4 +21,5 @@ public class FirebaseC {
     public final static DatabaseReference refPhoto = database.getReference("ukm");
     public final static DatabaseReference refPhotoKomuniti = database.getReference("komuniti");
     public final static DatabaseReference refPhotoEvent = database.getReference("event");
+    public final static DatabaseReference refPertanyaan = database.getReference("question");
 }

@@ -2,22 +2,19 @@ package com.example.ari.itellu;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.ari.itellu.model.user;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 
 public class RegistAct extends AppCompatActivity {
     private EditText userName, userPass, userEmail;
@@ -31,8 +28,8 @@ public class RegistAct extends AppCompatActivity {
         setContentView(R.layout.activity_regist);
 
         setupUIview();
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference table_user = database.getReference("User");
+//        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+//        final DatabaseReference table_user = database.getReference("User");
 
         mDialog = new ProgressDialog(this);
 
@@ -46,35 +43,51 @@ public class RegistAct extends AppCompatActivity {
         btnRegist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mDialog.setMessage("Tunggu Sebentar");
+                if (userEmail.getText().toString().isEmpty()) {
+                    userEmail.setError("Required");
+                    return;
+                }
+
+                if (userPass.getText().toString().isEmpty()) {
+                    userPass.setError("Required");
+                    return;
+                }
+
+                mDialog.setMessage("Proses Mendaftarkan");
+                mDialog.setIndeterminate(true);
                 mDialog.show();
 
-                table_user.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        //mengecek apakah data sudah ada dalam database
-                        if (dataSnapshot.child(userName.getText().toString()).exists()){
-                            mDialog.dismiss();
-                            Toast.makeText(RegistAct.this, "Username sudah ada", Toast.LENGTH_SHORT).show();
-                        }else {
-                            mDialog.dismiss();
-                            user User = new user(userEmail.getText().toString(),userPass.getText().toString());
-                            table_user.child(userName.getText().toString()).setValue(User);
-                            Toast.makeText(RegistAct.this, "Berhasil daftar", Toast.LENGTH_SHORT).show();
-                            finish();
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
+                createUser();
             }
         });
     }
+
+    private void createUser() {
+        final String email = userEmail.getText().toString();
+        String password = userPass.getText().toString();
+
+        FirebaseC.mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            mDialog.dismiss();
+                            Log.d("", "createUserWithEmail: Success");
+                            FirebaseC.currentUser = FirebaseC.mAuth.getCurrentUser();
+                            Toast.makeText(RegistAct.this, "Sign Up Complete", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(RegistAct.this, SignIn.class));
+                            finish();
+                        } else {
+                            mDialog.dismiss();
+                            Log.w("", "createUserWithEmail: Failure", task.getException());
+                            Toast.makeText(RegistAct.this, "Authentication Failure",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
     private void setupUIview(){
-        userName = (EditText) findViewById(R.id.etUser);
         userPass = (EditText) findViewById(R.id.etPass);
         userEmail= (EditText) findViewById(R.id.etEmail);
         btnRegist = (Button) findViewById(R.id.btnSignup);

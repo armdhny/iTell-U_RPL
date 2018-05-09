@@ -16,34 +16,34 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class SignIn extends AppCompatActivity {
+    //Inisiasi
     private EditText Email;
     private EditText Pass;
     private TextView SignUp;
     private Button Login;
     private ProgressDialog mDialog;
 
-    //Inisiasi FIREBASE
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
-
+        //Inisiasi
         Email = (EditText) findViewById(R.id.etEmailSignIn);
         Pass = (EditText) findViewById(R.id.etpass);
         Login = (Button) findViewById(R.id.btnSignIn);
         SignUp = (TextView) findViewById(R.id.tvregist);
 
         //inisialisasi database firebase
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference table_user = database.getReference("User");
+//        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+//        final DatabaseReference table_user = database.getReference("User");
         mDialog = new ProgressDialog(this);
-
+        //Method yang di klik login ini ada process login sama validasi.
+        //Validasinya yang getText to String is empty
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,6 +74,7 @@ public class SignIn extends AppCompatActivity {
         });
     }
 
+    //Method ini berfungsi untuk melakukan proses login
     private void loginProcess() {
         final String str_email = Email.getText().toString();
         final String str_password = Pass.getText().toString();

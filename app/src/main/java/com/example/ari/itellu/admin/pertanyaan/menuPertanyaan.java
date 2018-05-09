@@ -39,12 +39,15 @@ public class menuPertanyaan extends Fragment {
         FragmentStatePagerItemAdapter adapter = new FragmentStatePagerItemAdapter(
                 getActivity().getSupportFragmentManager(), FragmentPagerItems.with(getContext())
                 .add(FragmentPagerItem.of("All Question", listPertanyaan.class, listPertanyaan.arguments("new")))
-                .add(FragmentPagerItem.of("All Question", listPertanyaan.class, listPertanyaan.arguments("myQuestion")))
+                .add(FragmentPagerItem.of("My Question", listPertanyaan.class, listPertanyaan.arguments("myQuestion")))
                 .create()
         );
 
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.viewpager);
         SmartTabLayout viewPagerTab = (SmartTabLayout) view.findViewById(R.id.viewpagertab);
+
+        viewPager.setAdapter(adapter);
+        viewPagerTab.setViewPager(viewPager);
 
         mFab = (FloatingActionButton) view.findViewById(R.id.fabTanya);
         mFab.setOnClickListener(new View.OnClickListener() {

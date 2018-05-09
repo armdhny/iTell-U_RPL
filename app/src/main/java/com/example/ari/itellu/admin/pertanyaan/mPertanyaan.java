@@ -9,16 +9,9 @@ import java.io.Serializable;
 public class mPertanyaan implements Serializable {
     public String key_pertanyaan;
     public String namaPertanyaan;
+    public String email_asker;
     public String judulPertanyaan;
     public String deskripsiPertanyaan;
-
-    public mPertanyaan(String key_pertanyaan, String namaPertanyaan,
-                       String judulPertanyaan, String deskripsiPertanyaan) {
-        this.key_pertanyaan = key_pertanyaan;
-        this.namaPertanyaan = namaPertanyaan;
-        this.judulPertanyaan = judulPertanyaan;
-        this.deskripsiPertanyaan = deskripsiPertanyaan;
-    }
 
     public String getKey_pertanyaan() {
         return key_pertanyaan;
@@ -36,6 +29,14 @@ public class mPertanyaan implements Serializable {
         this.namaPertanyaan = namaPertanyaan;
     }
 
+    public String getEmail_asker() {
+        return email_asker;
+    }
+
+    public void setEmail_asker(String email_asker) {
+        this.email_asker = email_asker;
+    }
+
     public String getJudulPertanyaan() {
         return judulPertanyaan;
     }
@@ -49,6 +50,15 @@ public class mPertanyaan implements Serializable {
     }
 
     public void setDeskripsiPertanyaan(String deskripsiPertanyaan) {
+        this.deskripsiPertanyaan = deskripsiPertanyaan;
+    }
+
+    public mPertanyaan(String key_pertanyaan, String namaPertanyaan,
+                       String email_asker, String judulPertanyaan, String deskripsiPertanyaan) {
+        this.key_pertanyaan = key_pertanyaan;
+        this.namaPertanyaan = namaPertanyaan;
+        this.email_asker = email_asker;
+        this.judulPertanyaan = judulPertanyaan;
         this.deskripsiPertanyaan = deskripsiPertanyaan;
     }
 

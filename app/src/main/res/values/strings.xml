@@ -9,6 +9,7 @@
     <string name="already_a_member">Already a member?</string>
     <string name="title_activity_navigation">NavigationActivity</string>
 
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
@@ -16,4 +17,39 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="article_text">
+        <b>Telkom University</b> is one of the biggest and most modern private universities in Indonesia.
+        Fast growth of ICT  (Information and Communication Technology) combined with the cultural
+        diversity of Indonesia leads Telkom University to focus on ICT-based education and
+        research in the field of engineering, business, and creative industry.
+        \n\n
+
+        Telkom University was launched on 14th August 2013, a merger of four higher education
+        institutions belonging to PT Telekomunikasi Indonesia Tbk, which is the biggest
+            telecommunication corporate owned by Indonesia Government.
+        \n\n
+
+        The grand launching was held on 31st August 2013 by
+        the Minister of Education and Culture – Professor Mohammad Nuh,
+        the CEO of Telkom Group – Dr. Arief Yahya, and
+        the Chairman of Telkom Foundation – Johni Girsang, M.Sc.
+
+        By the spirit of “Creating the Future”, within 4 years after establishment,
+        Telkom University has turned up to be a world-class university consisting of
+            7 faculties (schools) and 31 programs (departments) for undergraduate and graduate studies as follows:
+        \n\n
+
+
+
+        &#8226; <a href="https://see.telkomuniversity.ac.id/">School of Electrical Engineering</a> \n
+        &#8226; <a href="http://bie.telkomuniversity.ac.id/">School of Industrial Engineering</a> \n
+        &#8226; <a href="https://soc.telkomuniversity.ac.id">School of Computing</a> \n
+        &#8226; <a href="http://seb.telkomuniversity.ac.id/">School of Economic Business</a> \n
+        &#8226; <a href="http://scb.telkomuniversity.ac.id/">School of Communication and Business</a> \n
+        &#8226; <a href="http://sci.telkomuniversity.ac.id/">School of Creative Industry</a> \n
+        &#8226; <a href="https://soc.telkomuniversity.ac.id/">School of Applied Sciences</a> \n
+
+
+    </string>
 </resources>

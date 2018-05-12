@@ -11,11 +11,19 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.example.ari.itellu.admin.Event.menuEvent;
+import com.example.ari.itellu.admin.Informasi.menuInformasi;
 import com.example.ari.itellu.admin.MenuAdmin;
+import com.example.ari.itellu.admin.komunitas.menuKomunitas;
+import com.example.ari.itellu.admin.pertanyaan.menuPertanyaan;
+import com.example.ari.itellu.admin.ukm.menuUkm;
 
 public class NavigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +32,14 @@ public class NavigationActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        filterUser();
+        if (FirebaseC.currentUser == null) {
+            startActivity(new Intent(NavigationActivity.this, SignIn.class));
+            finish();
+        } else {
+            Log.d("Current User", "Berhasil Login");
+        }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -31,7 +47,7 @@ public class NavigationActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
@@ -73,23 +89,61 @@ public class NavigationActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_profile) {
-            // Handle the Profile action
+        if (id == R.id.nav_home) {
+            MenuHome fragment = new MenuHome();
+            fragment.setArguments(getIntent().getExtras());
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.container1, fragment, "MenuHome").commit();
+            getSupportFragmentManager().popBackStack();
+
         } else if (id == R.id.nav_telyu) {
+            Log.d("nav_telyu", "Profile Telkom");
+            menuInformasi fragment = new menuInformasi();
+            fragment.setArguments(getIntent().getExtras());
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.container1, fragment, "menuInformasi").commit();
+            getSupportFragmentManager().popBackStack();
 
         } else if (id == R.id.nav_ukm) {
+            Log.d("nav_ukm", "Menu UKM");
+            menuUkm fragment = new menuUkm();
+            fragment.setArguments(getIntent().getExtras());
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.container1, fragment, "menuUkm").commit();
+            getSupportFragmentManager().popBackStack();
 
         } else if (id == R.id.nav_komuniti) {
+            Log.d("nav_komuniti", "Menu Komunitas");
+            menuKomunitas fragment = new menuKomunitas();
+            fragment.setArguments(getIntent().getExtras());
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.container1, fragment, "menuKomunitas").commit();
+            getSupportFragmentManager().popBackStack();
 
         } else if (id == R.id.nav_event) {
+            Log.d("nav_event", "Menu Event");
+            menuEvent fragment = new menuEvent();
+            fragment.setArguments(getIntent().getExtras());
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.container1, fragment, "MenuEvent").commit();
+            getSupportFragmentManager().popBackStack();
+
 
         } else if (id == R.id.nav_maps) {
+            Log.d("nav_maps", "Menu Maps");
 
         } else if (id == R.id.nav_help){
+            Log.d("nav_help", "Menu Maps");
+            menuPertanyaan fragment = new menuPertanyaan();
+            fragment.setArguments(getIntent().getExtras());
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.container1, fragment, "MenuPertanyaan").commit();
+            getSupportFragmentManager().popBackStack();
 
         } else if (id == R.id.nav_logout){
             FirebaseC.mAuth.signOut();
             FirebaseC.currentUser = null;
+            Toast.makeText(NavigationActivity.this, "Logout Successfull", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(NavigationActivity.this, SignIn.class));
             finish();
 
@@ -99,7 +153,7 @@ public class NavigationActivity extends AppCompatActivity
             MenuAdmin fragment = new MenuAdmin();
             fragment.setArguments(getIntent().getExtras());
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container1,fragment,"MenuAdmin").commit();
+                    .replace(R.id.container1, fragment, "MenuAdmin").commit();
             getSupportFragmentManager().popBackStack();
 
 
@@ -108,5 +162,19 @@ public class NavigationActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void filterUser() {
+        NavigationView navView = (NavigationView) findViewById(R.id.nav_view);
+        Menu menu = navView.getMenu();
+        MenuItem admin = menu.findItem(R.id.nav_admin);
+
+        if (FirebaseC.mAuth.getCurrentUser().getEmail().equals("admin@admin.com")) {
+            admin.setVisible(true);
+        } else {
+            admin.setVisible(false);
+
+        }
+
     }
 }

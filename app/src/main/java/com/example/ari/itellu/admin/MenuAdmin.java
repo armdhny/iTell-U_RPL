@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.ari.itellu.R;
+import com.example.ari.itellu.admin.Informasi.menuInformasi;
 import com.example.ari.itellu.admin.komunitas.menuKomunitas;
 import com.example.ari.itellu.admin.Event.menuEvent;
 import com.example.ari.itellu.admin.pertanyaan.menuPertanyaan;
@@ -41,6 +42,14 @@ public class MenuAdmin extends Fragment {
             @Override
             public void onClick(View view) {
                 Log.d("Button Crud TelYu", "Menuju Menu Crud telyu");
+
+                Fragment info_telyu = new menuInformasi();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.replace(R.id.container1, info_telyu);
+                transaction.addToBackStack(null);
+
+                transaction.commit();
             }
         });
 

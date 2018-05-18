@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.ari.itellu.FirebaseC;
 import com.example.ari.itellu.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -94,6 +95,14 @@ public class menuKomunitas extends Fragment {
         });
 
         fabKomuniti = (FloatingActionButton) view.findViewById(R.id.fabKomuniti);
+
+        if (FirebaseC.mAuth.getCurrentUser().getEmail().equals("admin@admin.com")) {
+            fabKomuniti.setVisibility(view.VISIBLE);
+        } else {
+            fabKomuniti.setVisibility(view.GONE);
+
+        }
+
         fabKomuniti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

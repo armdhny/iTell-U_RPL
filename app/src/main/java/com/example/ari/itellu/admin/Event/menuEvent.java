@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.ari.itellu.FirebaseC;
 import com.example.ari.itellu.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -94,6 +95,12 @@ public class menuEvent extends Fragment {
         });
 
         mFabEvent = (FloatingActionButton) view.findViewById(R.id.fabEvent);
+        if (FirebaseC.mAuth.getCurrentUser().getEmail().equals("admin@admin.com")) {
+            mFabEvent.setVisibility(view.VISIBLE);
+        } else {
+            mFabEvent.setVisibility(view.GONE);
+        }
+
         mFabEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

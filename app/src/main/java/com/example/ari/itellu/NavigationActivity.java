@@ -11,6 +11,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ari.itellu.admin.Event.menuEvent;
@@ -24,6 +26,7 @@ public class NavigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     NavigationView navigationView;
+    private TextView mNamaUser, mEmailUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,13 @@ public class NavigationActivity extends AppCompatActivity
         } else {
             Log.d("Current User", "Berhasil Login");
         }
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View header = navigationView.getHeaderView(0);
+        mNamaUser = (TextView) header.findViewById(R.id.namaUser);
+        mNamaUser.setText(FirebaseC.mAuth.getCurrentUser().getEmail().split("@")[0]);
+        mEmailUser = (TextView) header.findViewById(R.id.emailUser);
+        mEmailUser.setText(FirebaseC.mAuth.getCurrentUser().getEmail());
+
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
